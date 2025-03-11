@@ -30,5 +30,23 @@ function visualizingData(data)
       endif
     endfor
   endfor
+endfunction
 
+function visualizingClassification(data, assignedClasses, adjustedCentroids)
+  uniqueClasses = unique(assignedClasses);
+  figure;
+  colors = ['r', 'g', 'b', 'c', 'm', 'y', 'k'];
+  hold on;
+
+  for i = 1:length(uniqueClasses)
+    classData = data(assignedClasses == uniqueClasses(i), :);
+    plot(classData(:, 1), classData(:, 2), ['*', colors(mod(i-1, length(colors)) + 1)], 'MarkerSize', 6);
+  end
+
+  plot(adjustedCentroids(:, 1), adjustedCentroids(:, 2), 'ko', 'MarkerSize', 10, 'MarkerFaceColor', 'k');
+  xlabel('Feature 1');
+  ylabel('Feature 2');
+  title('Data Classification with Centroids');
+  legend(cellstr(num2str(uniqueClasses(:))), 'Location', 'best');
+  hold off;
 endfunction
