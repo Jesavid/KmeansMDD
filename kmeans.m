@@ -28,5 +28,7 @@ train_data = csvread("train_data.csv");
 normalizedDataSet = normalizeData(train_data);
 % Generar los plots y descargarlos
 % visualizingData(normalizedDataSet);
-[adjustedCentroids,assignedClasses] = kMeansCentroidsAdjust(train_data);
-% visualizingClassification(train_data, assignedClasses, adjustedCentroids)
+% Ver clases de los datos
+visualizingDataClassification(normalizedDataSet);
+[adjustedCentroids,assignedClasses] = kMeansCentroidsAdjust(normalizedDataSet);
+visualizingClassification(normalizedDataSet, assignedClasses, adjustedCentroids);
